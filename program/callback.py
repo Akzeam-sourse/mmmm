@@ -178,24 +178,24 @@ async def cbmenu(_, query: CallbackQuery):
               f"⚙️ **اعدادات الاغنية** {query.message.chat.title}\n\n⏸ : ايقاف مؤقت\n▶️ : استمرار\n🔇 : كتم حساب المساعد\n🔊 : الغاء كتم حساب المساعد\n⏹ : ايقاف التشغيل",
               reply_markup=InlineKeyboardMarkup(
                   [[
-                      InlineKeyboardButton("‹ ⏹ ›", callback_data="cbstop"),
-                      InlineKeyboardButton("‹ ⏸ ›", callback_data="cbpause"),
-                      InlineKeyboardButton("‹ ▶️ ›", callback_data="cbresume"),
+                      InlineKeyboardButton("⏹", callback_data="cbstop"),
+                      InlineKeyboardButton("⏸", callback_data="cbpause"),
+                      InlineKeyboardButton("▶️", callback_data="cbresume"),
                   ],[
-                      InlineKeyboardButton("‹ 🔇 ›", callback_data="cbmute"),
-                      InlineKeyboardButton("‹ 🔊 ›", callback_data="cbunmute"),
+                      InlineKeyboardButton("🔇", callback_data="cbmute"),
+                      InlineKeyboardButton("🔊", callback_data="cbunmute"),
                   ],[
-                      InlineKeyboardButton("‹ اغلاق الاغنيه ›", callback_data="cls")],
+                      InlineKeyboardButton("🗑 اغلاق", callback_data="cls")],
                   ]
              ),
          )
     else:
-        await query.answer("‹ ماكو شي مشتغل لتلح حبي ›", show_alert=True)
+        await query.answer("❌ ماكو شي مشتغل لتلح؟", show_alert=True)
 
 
 @Client.on_callback_query(filters.regex("cls"))
 async def close(_, query: CallbackQuery):
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
-        return await query.answer("‹💡 وخر ايدك المشرف الوحيد الذي لديه صلاحية إدارة الدردشات الصوتية يمكنه النقر على هذا الزر ›", show_alert=True)
+        return await query.answer("💡 وخر ايدك المشرف الوحيد الذي لديه صلاحية إدارة الدردشات الصوتية يمكنه النقر على هذا الزر !", show_alert=True)
     await query.message.delete()
